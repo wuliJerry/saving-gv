@@ -22,7 +22,7 @@ jobs:
 
     - name: Sleep for a random duration
       run: |
-        sleep $((RANDOM % 86400) + 3600)
+        sleep $((RANDOM % 86400))
 
     - name: Run email script
       run: python main.py
