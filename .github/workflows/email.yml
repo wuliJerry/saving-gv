@@ -22,10 +22,10 @@ jobs:
 
     - name: Sleep for a random duration
       run: |
-        sleep $((RANDOM % 86400))  # This will sleep for a random duration between 0 and 24 hours
+        sleep $((RANDOM % 86400) + 3600)
 
     - name: Run email script
-      run: python email_sender.py
+      run: python main.py
       env:
         OUTLOOK_USER: ${{ secrets.OUTLOOK_USER }}
         OUTLOOK_PASSWORD: ${{ secrets.OUTLOOK_PASSWORD }}
