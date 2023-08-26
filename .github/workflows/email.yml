@@ -1,0 +1,31 @@
+name: Send Random Sentence Email
+
+on: 
+  push: 
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+
+    - name: Sleep for a random duration
+      run: |
+        sleep $((RANDOM % 86400))  # This will sleep for a random duration between 0 and 24 hours
+
+    - name: Run email script
+      run: python email_sender.py
+      env:
+        OUTLOOK_USER: ${{ secrets.OUTLOOK_USER }}
+        OUTLOOK_PASSWORD: ${{ secrets.OUTLOOK_PASSWORD }}
